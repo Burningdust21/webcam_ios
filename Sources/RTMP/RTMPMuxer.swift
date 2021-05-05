@@ -77,8 +77,7 @@ extension RTMPMuxer: VideoEncoderDelegate {
         buffer.append(contentsOf: compositionTime.bigEndian.data[1..<4])
         buffer.append(data)
         delegate?.sampleOutput(video: buffer, withTimestamp: delta, muxer: self)
-        // videoTimeStamp = decodeTimeStamp
-        videoTimeStamp += 1
+        videoTimeStamp = CMTimeAdd(videoTimeStamp, CMTimeMakeWithSeconds(1,preferredTimescale: 1))
     }
 }
 

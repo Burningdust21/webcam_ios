@@ -51,7 +51,7 @@ public final class H264Encoder {
 
     public static let defaultWidth: Int32 = 960
     public static let defaultHeight: Int32 = 640
-    public static let defaultBitrate: UInt32 = 1500 * 500
+    public static let defaultBitrate: UInt32 = 1500 * 8000
     public static let defaultScalingMode: ScalingMode = .trim
 
     #if os(iOS)
