@@ -55,7 +55,7 @@ public class  ARSessionCotroller: ARSession{
     
     func startRunning() {
         ArIsRunning = true
-        arSession.run(arConfiguration)
+        arSession.run(arConfiguration, options: [ARSession.RunOptions.resetTracking])
         print("AR start running", arConfiguration)
     }
     
@@ -63,6 +63,17 @@ public class  ARSessionCotroller: ARSession{
         ArIsRunning = false
         arSession.pause()
         print("AR stopped!")
+    }
+    
+    public func resetARSession() {
+        // reset arkit world origin
+        arSession.pause()
+        setupARSession()
+    }
+
+    func setupARSession() {
+        print("reset world origin!")
+        arSession.run(arConfiguration, options: [ARSession.RunOptions.resetTracking])
     }
 
 }

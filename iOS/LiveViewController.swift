@@ -148,6 +148,7 @@ final class LiveViewController: UIViewController, ARSessionDelegate {
             rtmpConnection.removeEventListener(.ioError, selector: #selector(rtmpErrorHandler), observer: self)
             publish.setTitle("●", for: [])
         } else {
+            ARSessionCotroller.ARController.resetARSession()
             UIApplication.shared.isIdleTimerDisabled = true
             rtmpConnection.addEventListener(.rtmpStatus, selector: #selector(rtmpStatusHandler), observer: self)
             rtmpConnection.addEventListener(.ioError, selector: #selector(rtmpErrorHandler), observer: self)
