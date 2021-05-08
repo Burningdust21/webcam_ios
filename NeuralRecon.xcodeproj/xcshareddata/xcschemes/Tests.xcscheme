@@ -19,7 +19,7 @@
                BlueprintIdentifier = "29798E581CE60E5300F5CBD0"
                BuildableName = "Tests.xctest"
                BlueprintName = "Tests"
-               ReferencedContainer = "container:HaishinKit.xcodeproj">
+               ReferencedContainer = "container:NeuralRecon.xcodeproj">
             </BuildableReference>
          </TestableReference>
       </Testables>

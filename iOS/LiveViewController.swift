@@ -106,7 +106,7 @@ final class LiveViewController: UIViewController, ARSessionDelegate {
                 logger.warn(error.description)
             }
         }
-
+        rtmpStream.videoSettings[.bitrate] = Int(Preference.defaultInstance.bitRate!)! * 1500
         print("[info] viewWillAppear")
     }
 

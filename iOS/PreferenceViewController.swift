@@ -5,7 +5,8 @@ final class PreferenceViewController: UIViewController {
     @IBOutlet private weak var streamNameField: UITextField?
     @IBOutlet private weak var formatFiled: UITextField?
     @IBOutlet private weak var scaleField: UITextField?
-
+    @IBOutlet private weak var bitRateField: UITextField?
+    
     @IBOutlet weak var optionsLabel: UILabel!
     
     override func viewWillAppear(_ animated: Bool) {
@@ -20,12 +21,14 @@ final class PreferenceViewController: UIViewController {
             Preference.defaultInstance.streamName = configs[1]
             Preference.defaultInstance.captureMode = configs[2]
             Preference.defaultInstance.encodeScale = configs[3]
+            Preference.defaultInstance.bitRate = configs[4]
         }
         
         urlField?.text = Preference.defaultInstance.uri
         streamNameField?.text = Preference.defaultInstance.streamName
         formatFiled?.text = Preference.defaultInstance.captureMode
         scaleField?.text = Preference.defaultInstance.encodeScale
+        bitRateField?.text = Preference.defaultInstance.bitRate
         optionsLabel.text = "(\(ARWorldTrackingConfiguration.supportedVideoFormats.count) options availble)"
     }
     
@@ -34,7 +37,7 @@ final class PreferenceViewController: UIViewController {
         // save configrations
 
         // make dictinary
-        let configs = NSArray(objects: Preference.defaultInstance.uri!,Preference.defaultInstance.streamName!,Preference.defaultInstance.captureMode!,Preference.defaultInstance.encodeScale!)
+        let configs = NSArray(objects: Preference.defaultInstance.uri!,Preference.defaultInstance.streamName!,Preference.defaultInstance.captureMode!,Preference.defaultInstance.encodeScale!, Preference.defaultInstance.bitRate!)
 
         let fileURL = NSHomeDirectory() + Preference.defaultInstance.configFileDir
         //writing
@@ -56,6 +59,9 @@ extension PreferenceViewController: UITextFieldDelegate {
         }
         if scaleField == textField {
             Preference.defaultInstance.encodeScale = textField.text
+        }
+        if bitRateField == textField {
+            Preference.defaultInstance.bitRate = textField.text
         }
         textField.resignFirstResponder()
         return true

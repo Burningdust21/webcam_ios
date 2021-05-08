@@ -14,10 +14,10 @@
             buildForAnalyzing = "YES">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "2945CBBC1B4BE66000104112"
+               BlueprintIdentifier = "29D3D4DB1ED0509900DD4AA6"
                BuildableName = "HaishinKit.framework"
-               BlueprintName = "HaishinKit iOS"
-               ReferencedContainer = "container:HaishinKit.xcodeproj">
+               BlueprintName = "HaishinKit tvOS"
+               ReferencedContainer = "container:NeuralRecon.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>
       </BuildActionEntries>
@@ -31,7 +31,7 @@
       </Testables>
    </TestAction>
    <LaunchAction
-      buildConfiguration = "Release"
+      buildConfiguration = "Debug"
       selectedDebuggerIdentifier = "Xcode.DebuggerFoundation.Debugger.LLDB"
       selectedLauncherIdentifier = "Xcode.DebuggerFoundation.Launcher.LLDB"
       launchStyle = "0"
@@ -40,23 +40,13 @@
       debugDocumentVersioning = "YES"
       debugServiceExtension = "internal"
       allowLocationSimulation = "YES">
-      <BuildableProductRunnable
-         runnableDebuggingMode = "0">
-         <BuildableReference
-            BuildableIdentifier = "primary"
-            BlueprintIdentifier = "29C9327D1CD76FB800283FC5"
-            BuildableName = "Example iOS.app"
-            BlueprintName = "Example iOS"
-            ReferencedContainer = "container:HaishinKit.xcodeproj">
-         </BuildableReference>
-      </BuildableProductRunnable>
       <MacroExpansion>
          <BuildableReference
             BuildableIdentifier = "primary"
-            BlueprintIdentifier = "2945CBBC1B4BE66000104112"
+            BlueprintIdentifier = "29D3D4DB1ED0509900DD4AA6"
             BuildableName = "HaishinKit.framework"
-            BlueprintName = "HaishinKit iOS"
-            ReferencedContainer = "container:HaishinKit.xcodeproj">
+            BlueprintName = "HaishinKit tvOS"
+            ReferencedContainer = "container:NeuralRecon.xcodeproj">
          </BuildableReference>
       </MacroExpansion>
    </LaunchAction>
@@ -69,10 +59,10 @@
       <MacroExpansion>
          <BuildableReference
             BuildableIdentifier = "primary"
-            BlueprintIdentifier = "2945CBBC1B4BE66000104112"
+            BlueprintIdentifier = "29D3D4DB1ED0509900DD4AA6"
             BuildableName = "HaishinKit.framework"
-            BlueprintName = "HaishinKit iOS"
-            ReferencedContainer = "container:HaishinKit.xcodeproj">
+            BlueprintName = "HaishinKit tvOS"
+            ReferencedContainer = "container:NeuralRecon.xcodeproj">
          </BuildableReference>
       </MacroExpansion>
    </ProfileAction>

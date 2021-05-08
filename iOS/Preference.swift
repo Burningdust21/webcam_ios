@@ -7,6 +7,8 @@ struct Preference {
     var captureMode: String? = "0"
     
     var encodeScale: String? = "2"
+    
+    var bitRate: String? = "8000"
 
     let configFileDir: String = "/Documents/config.txt" //this is the file. we will write to and read from it
 }
