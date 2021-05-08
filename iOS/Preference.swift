@@ -8,5 +8,5 @@ struct Preference {
     
     var encodeScale: String? = "2"
 
-
+    let configFileDir: String = "/Documents/config.txt" //this is the file. we will write to and read from it
 }
