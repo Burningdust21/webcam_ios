@@ -12,7 +12,6 @@
 		2915EC4D1D85BB8C00621092 /* RTMPTSocket.swift in Sources */ = {isa = PBXBuildFile; fileRef = 294852551D84BFAD002DE492 /* RTMPTSocket.swift */; };
 		2915EC541D85BDF100621092 /* ReplayKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2915EC531D85BDF100621092 /* ReplayKit.framework */; };
 		2916196C1E7F0768009FB344 /* CMFormatDescription+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2916196B1E7F0768009FB344 /* CMFormatDescription+Extension.swift */; };
-		291F4E381CF206E600F59C51 /* Icon.png in Resources */ = {isa = PBXBuildFile; fileRef = 291F4E361CF206E200F59C51 /* Icon.png */; };
 		29245AEF1D32348400AFFB9A /* VideoGravityUtil.swift in Sources */ = {isa = PBXBuildFile; fileRef = 29245AEC1D3233EB00AFFB9A /* VideoGravityUtil.swift */; };
 		2926A9EC1DE6B71E0074E3D2 /* MachUtil.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2926A9EB1DE6B71D0074E3D2 /* MachUtil.swift */; };
 		2926A9F31DE6F08F0074E3D2 /* TimerDriver.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2926A9F01DE6EAEB0074E3D2 /* TimerDriver.swift */; };
@@ -248,7 +247,6 @@
 		2915EC531D85BDF100621092 /* ReplayKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = ReplayKit.framework; path = System/Library/Frameworks/ReplayKit.framework; sourceTree = SDKROOT; };
 		2916196B1E7F0768009FB344 /* CMFormatDescription+Extension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "CMFormatDescription+Extension.swift"; sourceTree = "<group>"; };
 		2917CB652104CA2800F6823A /* AudioSpecificConfigTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AudioSpecificConfigTests.swift; sourceTree = "<group>"; };
-		291F4E361CF206E200F59C51 /* Icon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Icon.png; sourceTree = "<group>"; };
 		29205CBD1E461F4E009D3FFF /* Main.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Main.storyboard; sourceTree = "<group>"; };
 		29245AEC1D3233EB00AFFB9A /* VideoGravityUtil.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = VideoGravityUtil.swift; sourceTree = "<group>"; };
 		2926A9EB1DE6B71D0074E3D2 /* MachUtil.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MachUtil.swift; sourceTree = "<group>"; };
@@ -672,7 +670,6 @@
 			children = (
 				2B206B5325C5A40A0018B0C3 /* Poserecorder.swift */,
 				296897431CDB01D20074D5F0 /* Info.plist */,
-				291F4E361CF206E200F59C51 /* Icon.png */,
 				29205CBD1E461F4E009D3FFF /* Main.storyboard */,
 				296897411CDB01D20074D5F0 /* AppDelegate.swift */,
 				296897441CDB01D20074D5F0 /* LiveViewController.swift */,
@@ -1057,7 +1054,6 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				291F4E381CF206E600F59C51 /* Icon.png in Resources */,
 				296897651CDB028C0074D5F0 /* Assets.xcassets in Resources */,
 				7E33D5D7255575F1003066EC /* Screencast.appex in Resources */,
 				7E43B5E42568E57900C9CD58 /* GCDWebUploader.bundle in Resources */,
@@ -1288,7 +1284,7 @@
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				DEBUG_INFORMATION_FORMAT = dwarf;
-				DEVELOPMENT_TEAM = 33XC7CLH6G;
+				DEVELOPMENT_TEAM = "";
 				FRAMEWORK_SEARCH_PATHS = "$(inherited)";
 				INFOPLIST_FILE = "$(SRCROOT)/iOS/Screencast/Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
@@ -1314,7 +1310,7 @@
 				CLANG_WARN_SUSPICIOUS_MOVES = YES;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
-				DEVELOPMENT_TEAM = 33XC7CLH6G;
+				DEVELOPMENT_TEAM = "";
 				FRAMEWORK_SEARCH_PATHS = "$(inherited)";
 				INFOPLIST_FILE = "$(SRCROOT)/iOS/Screencast/Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
@@ -1533,7 +1529,7 @@
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				CODE_SIGN_STYLE = Automatic;
 				DEBUG_INFORMATION_FORMAT = dwarf;
-				DEVELOPMENT_TEAM = 33XC7CLH6G;
+				DEVELOPMENT_TEAM = "";
 				ENABLE_BITCODE = NO;
 				FRAMEWORK_SEARCH_PATHS = "$(inherited)";
 				GCC_OPTIMIZATION_LEVEL = 0;
@@ -1561,7 +1557,7 @@
 				CODE_SIGN_IDENTITY = "Apple Development";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = 33XC7CLH6G;
+				DEVELOPMENT_TEAM = "";
 				ENABLE_BITCODE = NO;
 				FRAMEWORK_SEARCH_PATHS = "$(inherited)";
 				INFOPLIST_FILE = "$(SRCROOT)/iOS/Info.plist";
