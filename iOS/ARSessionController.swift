@@ -51,9 +51,6 @@ public class  ARSessionCotroller: ARSession{
         get{
             return Double(arConfiguration.videoFormat.framesPerSecond)
         }
-        set{
-            //haha, cannot set
-        }
     }
     
     func startRunning() {
@@ -67,9 +64,5 @@ public class  ARSessionCotroller: ARSession{
         arSession.pause()
         print("AR stopped!")
     }
-    
-    func FPSchange(newFPS: Double) {
-        fps = newFPS
-        arSession.pause()
-    }
+
 }
