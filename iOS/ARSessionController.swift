@@ -51,14 +51,11 @@ public class  ARSessionCotroller: ARSession{
         get{
             return Double(arConfiguration.videoFormat.framesPerSecond)
         }
-        set{
-            //haha, cannot set
-        }
     }
     
     func startRunning() {
         ArIsRunning = true
-        arSession.run(arConfiguration)
+        arSession.run(arConfiguration, options: [ARSession.RunOptions.resetTracking])
         print("AR start running", arConfiguration)
     }
     
@@ -68,8 +65,15 @@ public class  ARSessionCotroller: ARSession{
         print("AR stopped!")
     }
     
-    func FPSchange(newFPS: Double) {
-        fps = newFPS
+    public func resetARSession() {
+        // reset arkit world origin
         arSession.pause()
+        setupARSession()
     }
+
+    func setupARSession() {
+        print("reset world origin!")
+        arSession.run(arConfiguration, options: [ARSession.RunOptions.resetTracking])
+    }
+
 }

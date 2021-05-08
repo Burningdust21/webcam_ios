@@ -143,12 +143,12 @@ final class LiveViewController: UIViewController, ARSessionDelegate {
     @IBAction func on(publish: UIButton) {
         print("[Button select] viewWillAppear")
         if publish.isSelected {
-            UIApplication.shared.isIdleTimerDisabled = false
             rtmpConnection.close()
             rtmpConnection.removeEventListener(.rtmpStatus, selector: #selector(rtmpStatusHandler), observer: self)
             rtmpConnection.removeEventListener(.ioError, selector: #selector(rtmpErrorHandler), observer: self)
             publish.setTitle("●", for: [])
         } else {
+            ARSessionCotroller.ARController.resetARSession()
             UIApplication.shared.isIdleTimerDisabled = true
             rtmpConnection.addEventListener(.rtmpStatus, selector: #selector(rtmpStatusHandler), observer: self)
             rtmpConnection.addEventListener(.ioError, selector: #selector(rtmpErrorHandler), observer: self)
