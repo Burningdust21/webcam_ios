@@ -148,7 +148,7 @@
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits"/>
                                 <connections>
-                                    <outlet property="delegate" destination="QS5-Rx-YEW" id="0mZ-9n-UrF"/>
+                                    <outlet property="delegate" destination="8rJ-Kc-sve" id="6x8-QS-1H1"/>
                                 </connections>
                             </textField>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Encoding Scale Factor: " textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="a4w-fY-BBe">
@@ -215,7 +215,7 @@
                         <outlet property="bitRateField" destination="tZA-XE-5XF" id="PoS-Kq-JMf"/>
                         <outlet property="formatFiled" destination="6my-WG-gDK" id="rff-sf-bQx"/>
                         <outlet property="optionsLabel" destination="kDx-Ru-5Gi" id="baR-h8-nHh"/>
-                        <outlet property="scaleField" destination="SWw-aN-b2K" id="7fI-p2-6aO"/>
+                        <outlet property="scaleField" destination="SWw-aN-b2K" id="4AW-h4-lmE"/>
                         <outlet property="streamNameField" destination="A5Y-FA-epc" id="KUC-b8-agC"/>
                         <outlet property="urlField" destination="Hiy-yh-Bwn" id="zo8-Kl-J5D"/>
                     </connections>
