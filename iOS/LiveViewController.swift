@@ -53,11 +53,6 @@ final class LiveViewController: UIViewController, ARSessionDelegate {
             .continuousExposure: true,
             .preferredVideoStabilizationMode: AVCaptureVideoStabilizationMode.auto
         ]
-        //rtmpStream.videoSettings = [
-        //    .width: 854,
-        ///    .height: 480
-        //]
-        
 
         NotificationCenter.default.addObserver(self, selector: #selector(on(_:)), name: UIDevice.orientationDidChangeNotification, object: nil)
         NotificationCenter.default.addObserver(self, selector: #selector(didEnterBackground(_:)), name: UIApplication.didEnterBackgroundNotification, object: nil)
@@ -143,11 +138,13 @@ final class LiveViewController: UIViewController, ARSessionDelegate {
     @IBAction func on(publish: UIButton) {
         print("[Button select] viewWillAppear")
         if publish.isSelected {
+            PoseRecorder.PoseRecordes.Clear()
             rtmpConnection.close()
             rtmpConnection.removeEventListener(.rtmpStatus, selector: #selector(rtmpStatusHandler), observer: self)
             rtmpConnection.removeEventListener(.ioError, selector: #selector(rtmpErrorHandler), observer: self)
             publish.setTitle("●", for: [])
         } else {
+            PoseRecorder.PoseRecordes.Clear()
             ARSessionCotroller.ARController.resetARSession()
             UIApplication.shared.isIdleTimerDisabled = true
             rtmpConnection.addEventListener(.rtmpStatus, selector: #selector(rtmpStatusHandler), observer: self)

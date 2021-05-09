@@ -244,15 +244,15 @@ public final class H264Encoder {
         settings.observer = self
     }
 
-    func encodeImageBuffer(_ imageBuffer: CVImageBuffer, presentationTimeStamp: CMTime, duration: CMTime) {
+    func encodeImageBuffer(_ imageBuffer: CVImageBuffer, presentationTimeStamp: CMTime, duration: CMTime) -> ARSessionCotroller.poseStatus {
         guard isRunning.value && locked == 0 else {
-            return
+            return isRunning.value ? .lockInvalid : .sessionStopped
         }
         if invalidateSession {
             session = nil
         }
         guard let session: VTCompressionSession = session else {
-            return
+            return .sessionStopped
         }
         var flags: VTEncodeInfoFlags = []
         VTCompressionSessionEncodeFrame(
@@ -267,6 +267,7 @@ public final class H264Encoder {
         if !muted || lastImageBuffer == nil {
             lastImageBuffer = imageBuffer
         }
+        return .sentPose
     }
 
     private func setProperty(_ key: CFString, _ value: CFTypeRef?) {
