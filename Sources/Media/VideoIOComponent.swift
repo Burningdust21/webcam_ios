@@ -34,52 +34,40 @@ final class VideoIOComponent: IOComponent, ARSessionDelegate {
         
     public func session(_ session: ARSession, didUpdate frame: ARFrame)
     {
-        // convert pixel buffer to CMSbuffer
-        //print("[INFO] AR did load")
-
         let Pixbuffer = frame.capturedImage
         let CMSbuffer = CVPtoCMS(pixelBuffer: Pixbuffer, timestamp: frame.timestamp)
-        //do encoding
-        encodeSampleBuffer(CMSbuffer)
-
-        //control for synchrnization, pose will start to post only when the first frame complete encoding
-        if mixer != nil
-        {
-            if !mixer!.IsStartUpload
-            {
-                prevtime = 0
-                curtime = 0
-                TotalTime = 0
-                PoseRecorder.PoseRecordes.Clear()
-
-                return
-            }
-            else{
-                //print("[INFO] Pose has sent")
-
-                poseTimestamp = 1
-                DispatchQueue.main.async { [self] in
-                    TotalTime += poseTimestamp
-                    
-                    let trans = frame.camera.transform
-                    let quat = (simd_quaternion(trans))
-                    let intrinsics = frame.camera.intrinsics
-
-                    PoseRecorder.PoseRecordes.AddRecord(record: String(format: "%d,%f,%f,%f,%f,%f,%f,%f,%f,%f,%f,%f\r\n",
-                                                            UInt32(TotalTime),
-                                                            
-                                                            intrinsics[0][0], intrinsics[1][1],
-                                                            intrinsics[2][0], intrinsics[2][1],
-                                                            
-                                                            trans[3][0], trans[3][1], trans[3][2],
-                                                            quat.vector[3], quat.vector[0], quat.vector[1], quat.vector[2]))
-                }
-            }
+        // do encoding and sent pose
+        // sent only if this video frame starts to encode, make sure pose and video are synchronized
+        switch encodeSampleBuffer(CMSbuffer) {
+        case .sessionStopped:
+            TotalTime = 0
+        case .lockInvalid:
+            TotalTime += 0
+        case .sentPose:
+            sendPose(frame: frame)
         }
-        else{
-            return
-        }
+    }
     
+    func sendPose(frame: ARFrame) {
+        // print("[INFO] Pose has sent ", TotalTime)
+
+        poseTimestamp = 16
+        DispatchQueue.main.async { [self] in
+            
+            let trans = frame.camera.transform
+            let quat = (simd_quaternion(trans))
+            let intrinsics = frame.camera.intrinsics
+
+            PoseRecorder.PoseRecordes.AddRecord(record: String(format: "%d,%f,%f,%f,%f,%f,%f,%f,%f,%f,%f,%f\r\n",
+                                                    UInt32(TotalTime),
+                                                    
+                                                    intrinsics[0][0], intrinsics[1][1],
+                                                    intrinsics[2][0], intrinsics[2][1],
+                                                    
+                                                    trans[3][0], trans[3][1], trans[3][2],
+                                                    quat.vector[3], quat.vector[0], quat.vector[1], quat.vector[2]))
+            TotalTime += poseTimestamp
+        }
     }
     
     #if os(macOS)
@@ -485,9 +473,9 @@ final class VideoIOComponent: IOComponent, ARSessionDelegate {
 }
 
 extension VideoIOComponent {
-    func encodeSampleBuffer(_ sampleBuffer: CMSampleBuffer) {
+    func encodeSampleBuffer(_ sampleBuffer: CMSampleBuffer) -> ARSessionCotroller.poseStatus{
         guard let buffer: CVImageBuffer = CMSampleBufferGetImageBuffer(sampleBuffer) else {
-            return
+            return .sessionStopped
         }
 
         var imageBuffer: CVImageBuffer?
@@ -519,13 +507,15 @@ extension VideoIOComponent {
             renderer?.render(image: image)
         }
 
-        encoder.encodeImageBuffer(
+        let EncodingStart: ARSessionCotroller.poseStatus = encoder.encodeImageBuffer(
             imageBuffer ?? buffer,
             presentationTimeStamp: sampleBuffer.presentationTimeStamp,
             duration: sampleBuffer.duration
         )
 
         mixer?.recorder.appendPixelBuffer(imageBuffer ?? buffer, withPresentationTime: sampleBuffer.presentationTimeStamp)
+        
+        return EncodingStart
     }
 }
 

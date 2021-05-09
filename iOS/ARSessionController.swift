@@ -75,5 +75,11 @@ public class  ARSessionCotroller: ARSession{
         print("reset world origin!")
         arSession.run(arConfiguration, options: [ARSession.RunOptions.resetTracking])
     }
+    
+    public enum poseStatus {
+        case sessionStopped
+        case lockInvalid
+        case sentPose
+    }
 
 }

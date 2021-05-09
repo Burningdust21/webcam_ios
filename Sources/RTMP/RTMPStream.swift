@@ -622,7 +622,7 @@ extension RTMPStream: RTMPMuxerDelegate {
         //if !videoWasSent {
             //logger.debug("first video frame was sent")
         //}
-        //NSLog("video frame %d was sent", UInt32(videoTimestamp))
+        // NSLog("video frame %d was sent", UInt32(videoTimestamp))
         videoWasSent = true
         info.byteCount.mutate { $0 += Int64(length) }
         videoTimestamp = withTimestamp + (videoTimestamp - floor(videoTimestamp))
