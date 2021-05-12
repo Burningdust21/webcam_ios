@@ -61,14 +61,18 @@ public class  ARSessionCotroller: ARSession{
     
     func stopRunning() {
         ArIsRunning = false
-        arSession.pause()
-        print("AR stopped!")
+        DispatchQueue.global(qos: .userInteractive).async {
+            self.arSession.pause()
+            print("AR stopped!")
+        }
     }
     
     public func resetARSession() {
         // reset arkit world origin
-        arSession.pause()
-        setupARSession()
+        DispatchQueue.global(qos: .userInteractive).async {
+            self.arSession.pause()
+            self.setupARSession()
+        }
     }
 
     func setupARSession() {

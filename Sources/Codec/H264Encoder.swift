@@ -198,6 +198,7 @@ public final class H264Encoder {
                     // on iphone 11 with size=1792x827 this occurs
                     logger.error("encoding failed with kVTParameterErr. Perhaps the width x height is too big for the encoder setup?")
                 }
+            logger.error("frame dropped!!")
             return
         }
         let encoder: H264Encoder = Unmanaged<H264Encoder>.fromOpaque(refcon).takeUnretainedValue()

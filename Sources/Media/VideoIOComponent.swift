@@ -5,11 +5,20 @@ final class VideoIOComponent: IOComponent, ARSessionDelegate {
 
     var prevtime: Double = 0
     var curtime: Double = 0
-    var TotalTime: Double = 0
-    var poseTimestamp: Double = 0
-
+    var TotalTime: Atomic<Double> = .init(0.0)
+    let delta: Double = 1.0
+    
+    let debugMode: Bool = true
+    
+    var assetWriterInput: AVAssetWriterInput?
+    var assetWriter: AVAssetWriter?
+    var assetWriterInputPixelBufferAdaptorWithAssetWriterInput: AVAssetWriterInputPixelBufferAdaptor?
+    var nowDate: String?
+    let FPS:Int32 = 60
+    var dateFormat: DateFormatter = DateFormatter()
+    var localSavePose: String = ""
     // times of commection attemps
-    private var retryCount: Int = 0
+    private var reduceFPS: Int = 1
     
     
     private func CVPtoCMS(pixelBuffer : CVPixelBuffer, timestamp: TimeInterval)->CMSampleBuffer{
@@ -40,9 +49,12 @@ final class VideoIOComponent: IOComponent, ARSessionDelegate {
         // sent only if this video frame starts to encode, make sure pose and video are synchronized
         switch encodeSampleBuffer(CMSbuffer) {
         case .sessionStopped:
-            TotalTime = 0
+            if debugMode {
+                endRecorder()
+            }
+            TotalTime.mutate { $0 = 0 }
         case .lockInvalid:
-            TotalTime += 0
+            TotalTime.mutate { $0 += 0 }
         case .sentPose:
             sendPose(frame: frame)
         }
@@ -50,24 +62,95 @@ final class VideoIOComponent: IOComponent, ARSessionDelegate {
     
     func sendPose(frame: ARFrame) {
         // print("[INFO] Pose has sent ", TotalTime)
+        Arkit_queue.async { [self] in
 
-        poseTimestamp = 16
-        DispatchQueue.main.async { [self] in
-            
             let trans = frame.camera.transform
             let quat = (simd_quaternion(trans))
             let intrinsics = frame.camera.intrinsics
 
-            PoseRecorder.PoseRecordes.AddRecord(record: String(format: "%d,%f,%f,%f,%f,%f,%f,%f,%f,%f,%f,%f\r\n",
-                                                    UInt32(TotalTime),
-                                                    
-                                                    intrinsics[0][0], intrinsics[1][1],
-                                                    intrinsics[2][0], intrinsics[2][1],
-                                                    
-                                                    trans[3][0], trans[3][1], trans[3][2],
-                                                    quat.vector[3], quat.vector[0], quat.vector[1], quat.vector[2]))
-            TotalTime += poseTimestamp
+            let poseOutput = String(format: "%d,%f,%f,%f,%f,%f,%f,%f,%f,%f,%f,%f\r\n",
+                                    UInt32(TotalTime.value),
+
+                                   intrinsics[0][0], intrinsics[1][1],
+                                   intrinsics[2][0], intrinsics[2][1],
+
+                                   trans[3][0], trans[3][1], trans[3][2],
+                                   quat.vector[3], quat.vector[0], quat.vector[1], quat.vector[2])
+            PoseRecorder.PoseRecordes.AddRecord(record: poseOutput)
+            // in debug mode, save output to device
+            if debugMode {
+                saveToFile(pixelBuffer: frame.capturedImage, pose: poseOutput, frameNum: Int64(TotalTime.value))
+            }
+            TotalTime.mutate { $0 += delta }
         }
+    }
+    
+    func endRecorder() {
+        if TotalTime.value != 0 {
+            // stopped
+            assetWriterInput!.markAsFinished()
+            assetWriter!.finishWriting {
+                print("finished writing")
+            }
+            assetWriterInput = nil
+            assetWriter = nil
+            assetWriterInputPixelBufferAdaptorWithAssetWriterInput = nil
+
+            let fileURL = String(format: "%@/Documents/%@/pose_intrinsics.txt", arguments: [NSHomeDirectory(), nowDate!])
+            //writing
+            do {
+                try localSavePose.write(toFile: fileURL, atomically: false, encoding: String.Encoding.utf8)
+            }
+            catch {
+                print("Write error")
+            }
+            localSavePose = ""
+            nowDate = nil
+        }
+    }
+    func saveToFile(pixelBuffer: CVPixelBuffer, pose: String, frameNum: Int64) {
+        // save video
+        if frameNum == 0 {
+            dateFormat.dateFormat = "yyyy-MM-dd'T'HH-mm-ss"
+            nowDate = dateFormat.string(from: NSDate.init() as Date)
+            let dirPath =  String(format: "%@/Documents/%@", arguments: [NSHomeDirectory(), nowDate!])
+            let filePath = dirPath + "/Frames.m4v"
+            let outputURL = NSURL(fileURLWithPath: filePath as String)
+            do {
+                let fileManager = FileManager.default
+                try! fileManager.createDirectory(atPath: dirPath,
+                                        withIntermediateDirectories: true, attributes: nil)
+
+                assetWriter = try AVAssetWriter(outputURL:outputURL as URL, fileType:AVFileType.m4v)
+
+                let writerInputParams: NSDictionary = [AVVideoCodecKey:AVVideoCodecType.hevc,
+                                                       AVVideoWidthKey:Int(CVPixelBufferGetWidthOfPlane(pixelBuffer,0)),
+                                                       AVVideoHeightKey:Int(CVPixelBufferGetHeightOfPlane(pixelBuffer, 0)),
+                                                       AVVideoScalingModeKey:AVVideoScalingModeResizeAspectFill]
+
+                // thsi is for debug only
+                assetWriterInput = AVAssetWriterInput(mediaType:AVMediaType.video, outputSettings:writerInputParams as? [String : Any])
+                if (assetWriter!.canAdd(assetWriterInput!)) {
+                    assetWriter!.add(assetWriterInput!)
+                }
+
+                assetWriterInputPixelBufferAdaptorWithAssetWriterInput = AVAssetWriterInputPixelBufferAdaptor(assetWriterInput: assetWriterInput!)
+
+
+                assetWriter!.startWriting()
+                assetWriter!.startSession(atSourceTime: CMTime.zero)
+
+            } catch {
+                print("something wrong!!")
+            }
+        }
+
+        let timePresent = CMTimeMake(value: frameNum, timescale: FPS)
+        while(!assetWriterInputPixelBufferAdaptorWithAssetWriterInput!.assetWriterInput.isReadyForMoreMediaData) {}
+        assetWriterInputPixelBufferAdaptorWithAssetWriterInput!.append(pixelBuffer, withPresentationTime:timePresent)
+
+        // save pose
+        localSavePose += pose
     }
     
     #if os(macOS)
@@ -506,6 +589,13 @@ extension VideoIOComponent {
             }
             renderer?.render(image: image)
         }
+        if reduceFPS == 1 {
+            reduceFPS = 0
+        }
+        else {
+            reduceFPS = 1
+            return .lockInvalid
+        }
 
         let EncodingStart: ARSessionCotroller.poseStatus = encoder.encodeImageBuffer(
             imageBuffer ?? buffer,
@@ -539,25 +629,24 @@ extension VideoIOComponent {
 extension VideoIOComponent: AVCaptureVideoDataOutputSampleBufferDelegate {
     // MARK: AVCaptureVideoDataOutputSampleBufferDelegate
     func captureOutput(_ captureOutput: AVCaptureOutput, didOutput sampleBuffer: CMSampleBuffer, from connection: AVCaptureConnection) {
-        encodeSampleBuffer(sampleBuffer)
+        // encodeSampleBuffer(sampleBuffer)
         //return
         print("[INFO] ARStarting, AVcapture stopped!")
         
-        if (mixer!.session.isRunning)
-        {
-            mixer?.session.stopRunning()
+        DispatchQueue.global(qos: .userInteractive).async {
+            if (self.mixer!.session.isRunning)
+            {
+                self.mixer?.session.stopRunning()
+            }
+
+            if !ARSessionCotroller.ARController.ArIsRunning
+            {
+                ARSessionCotroller.ARController.arSession.delegate = self
+                ARSessionCotroller.ARController.arSession.delegateQueue = self.lockQueue
+                ARSessionCotroller.ARController.startRunning()
+
+            }
         }
-
-        
-        if !ARSessionCotroller.ARController.ArIsRunning
-        {
-            ARSessionCotroller.ARController.arSession.delegate = self
-            ARSessionCotroller.ARController.arSession.delegateQueue = lockQueue
-            ARSessionCotroller.ARController.startRunning()
-
-        }
-
-        
     }
 }
 

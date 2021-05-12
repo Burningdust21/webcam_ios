@@ -29,8 +29,8 @@ final class LiveViewController: UIViewController, ARSessionDelegate {
 
         let webServer = GCDWebServer()
 
-        webServer.addDefaultHandler(forMethod: "GET", request: GCDWebServerRequest.self, processBlock: {request in
-            return GCDWebServerDataResponse(text:PoseRecorder.PoseRecordes.PublicRecord())
+        webServer.addDefaultHandler(forMethod: "GET", request: GCDWebServerRequest.self, processBlock: {
+            request in return GCDWebServerDataResponse(text:PoseRecorder.PoseRecordes.PublicRecord())
                 
             })
             
