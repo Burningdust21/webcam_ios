@@ -113,6 +113,8 @@
 		29F6F4851DFB83E200920A3A /* RTMPHandshake.swift in Sources */ = {isa = PBXBuildFile; fileRef = 29F6F4841DFB83E200920A3A /* RTMPHandshake.swift */; };
 		29FD1B5022FF13190095A0BE /* VTSessionPropertyKey.swift in Sources */ = {isa = PBXBuildFile; fileRef = 29FD1B4F22FF13190095A0BE /* VTSessionPropertyKey.swift */; };
 		2B206B5425C5A40A0018B0C3 /* Poserecorder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B206B5325C5A40A0018B0C3 /* Poserecorder.swift */; };
+		2BAE0022264D8E95003BA614 /* WebServer-Bridging-Header.h in Headers */ = {isa = PBXBuildFile; fileRef = 7E43B5EA2568E72400C9CD58 /* WebServer-Bridging-Header.h */; };
+		2BAE0026264D8E9F003BA614 /* PoseServer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2BAE001B264D8B5E003BA614 /* PoseServer.swift */; };
 		2BEAAD3825C5B4C400EE2133 /* ARSessionController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2BEAAD3725C5B4C400EE2133 /* ARSessionController.swift */; };
 		7E33D5D7255575F1003066EC /* Screencast.appex in Resources */ = {isa = PBXBuildFile; fileRef = 2915EC521D85BDF100621092 /* Screencast.appex */; };
 		7E3DA9972562966400343FF2 /* Logboard in Frameworks */ = {isa = PBXBuildFile; productRef = 7E3DA9962562966400343FF2 /* Logboard */; };
@@ -133,8 +135,6 @@
 		7E43B5E12568E57900C9CD58 /* GCDWebServerMultiPartFormRequest.m in Sources */ = {isa = PBXBuildFile; fileRef = 7E43B5CF2568E57900C9CD58 /* GCDWebServerMultiPartFormRequest.m */; };
 		7E43B5E22568E57900C9CD58 /* GCDWebServerDataRequest.m in Sources */ = {isa = PBXBuildFile; fileRef = 7E43B5D02568E57900C9CD58 /* GCDWebServerDataRequest.m */; };
 		7E43B5E32568E57900C9CD58 /* GCDWebServerFileRequest.m in Sources */ = {isa = PBXBuildFile; fileRef = 7E43B5D12568E57900C9CD58 /* GCDWebServerFileRequest.m */; };
-		7E43B5E42568E57900C9CD58 /* GCDWebUploader.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 7E43B5D42568E57900C9CD58 /* GCDWebUploader.bundle */; };
-		7E43B5E52568E57900C9CD58 /* GCDWebUploader.m in Sources */ = {isa = PBXBuildFile; fileRef = 7E43B5D62568E57900C9CD58 /* GCDWebUploader.m */; };
 		7E43B5EF2568E95D00C9CD58 /* GCDWebServerFunctions.h in Sources */ = {isa = PBXBuildFile; fileRef = 7E43B5B52568E57900C9CD58 /* GCDWebServerFunctions.h */; };
 		7E43B5F02568E95D00C9CD58 /* GCDWebServerPrivate.h in Sources */ = {isa = PBXBuildFile; fileRef = 7E43B5B62568E57900C9CD58 /* GCDWebServerPrivate.h */; };
 		7E43B5F12568E95D00C9CD58 /* GCDWebServerConnection.h in Sources */ = {isa = PBXBuildFile; fileRef = 7E43B5B82568E57900C9CD58 /* GCDWebServerConnection.h */; };
@@ -150,8 +150,6 @@
 		7E43B5FB2568E95D00C9CD58 /* GCDWebServerMultiPartFormRequest.h in Sources */ = {isa = PBXBuildFile; fileRef = 7E43B5CC2568E57900C9CD58 /* GCDWebServerMultiPartFormRequest.h */; };
 		7E43B5FC2568E95D00C9CD58 /* GCDWebServerFileRequest.h in Sources */ = {isa = PBXBuildFile; fileRef = 7E43B5CD2568E57900C9CD58 /* GCDWebServerFileRequest.h */; };
 		7E43B5FD2568E95D00C9CD58 /* GCDWebServerURLEncodedFormRequest.h in Sources */ = {isa = PBXBuildFile; fileRef = 7E43B5D22568E57900C9CD58 /* GCDWebServerURLEncodedFormRequest.h */; };
-		7E43B5FE2568E95D00C9CD58 /* GCDWebUploader.bundle in Sources */ = {isa = PBXBuildFile; fileRef = 7E43B5D42568E57900C9CD58 /* GCDWebUploader.bundle */; };
-		7E43B5FF2568E95D00C9CD58 /* GCDWebUploader.h in Sources */ = {isa = PBXBuildFile; fileRef = 7E43B5D52568E57900C9CD58 /* GCDWebUploader.h */; };
 		7E4BA60A2560FD6C0033F18F /* HaishinKit.h in Headers */ = {isa = PBXBuildFile; fileRef = 299F7E3B1CD71A97001E7272 /* HaishinKit.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		7E662ED825614292003B8978 /* myhead.h in Headers */ = {isa = PBXBuildFile; fileRef = 7E662ED72561427B003B8978 /* myhead.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		BC20DF2C2503747E007BC608 /* HKPictureInPicureControllerPosition.swift in Sources */ = {isa = PBXBuildFile; fileRef = BC20DF2B2503747E007BC608 /* HKPictureInPicureControllerPosition.swift */; };
@@ -371,6 +369,7 @@
 		29F97F232336A4FA00A4C317 /* SettingTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingTests.swift; sourceTree = "<group>"; };
 		29FD1B4F22FF13190095A0BE /* VTSessionPropertyKey.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VTSessionPropertyKey.swift; sourceTree = "<group>"; };
 		2B206B5325C5A40A0018B0C3 /* Poserecorder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Poserecorder.swift; sourceTree = "<group>"; };
+		2BAE001B264D8B5E003BA614 /* PoseServer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PoseServer.swift; sourceTree = "<group>"; };
 		2BEAAD3725C5B4C400EE2133 /* ARSessionController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ARSessionController.swift; sourceTree = "<group>"; };
 		7E43B5B52568E57900C9CD58 /* GCDWebServerFunctions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GCDWebServerFunctions.h; sourceTree = "<group>"; };
 		7E43B5B62568E57900C9CD58 /* GCDWebServerPrivate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GCDWebServerPrivate.h; sourceTree = "<group>"; };
@@ -400,9 +399,6 @@
 		7E43B5D02568E57900C9CD58 /* GCDWebServerDataRequest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GCDWebServerDataRequest.m; sourceTree = "<group>"; };
 		7E43B5D12568E57900C9CD58 /* GCDWebServerFileRequest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GCDWebServerFileRequest.m; sourceTree = "<group>"; };
 		7E43B5D22568E57900C9CD58 /* GCDWebServerURLEncodedFormRequest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GCDWebServerURLEncodedFormRequest.h; sourceTree = "<group>"; };
-		7E43B5D42568E57900C9CD58 /* GCDWebUploader.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = GCDWebUploader.bundle; sourceTree = "<group>"; };
-		7E43B5D52568E57900C9CD58 /* GCDWebUploader.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GCDWebUploader.h; sourceTree = "<group>"; };
-		7E43B5D62568E57900C9CD58 /* GCDWebUploader.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GCDWebUploader.m; sourceTree = "<group>"; };
 		7E43B5EA2568E72400C9CD58 /* WebServer-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "WebServer-Bridging-Header.h"; sourceTree = "<group>"; };
 		7E662ED72561427B003B8978 /* myhead.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = myhead.h; sourceTree = "<group>"; };
 		BC20DF2B2503747E007BC608 /* HKPictureInPicureControllerPosition.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HKPictureInPicureControllerPosition.swift; sourceTree = "<group>"; };
@@ -682,6 +678,7 @@
 				29A39C801D85BEFA007C27E9 /* Screencast */,
 				7E43B5EA2568E72400C9CD58 /* WebServer-Bridging-Header.h */,
 				2BEAAD3725C5B4C400EE2133 /* ARSessionController.swift */,
+				2BAE001B264D8B5E003BA614 /* PoseServer.swift */,
 			);
 			path = iOS;
 			sourceTree = "<group>";
@@ -814,7 +811,6 @@
 			isa = PBXGroup;
 			children = (
 				7E43B5B32568E57900C9CD58 /* GCDWebServer */,
-				7E43B5D32568E57900C9CD58 /* GCDWebUploader */,
 			);
 			path = GCDTools;
 			sourceTree = "<group>";
@@ -878,16 +874,6 @@
 			path = Requests;
 			sourceTree = "<group>";
 		};
-		7E43B5D32568E57900C9CD58 /* GCDWebUploader */ = {
-			isa = PBXGroup;
-			children = (
-				7E43B5D42568E57900C9CD58 /* GCDWebUploader.bundle */,
-				7E43B5D52568E57900C9CD58 /* GCDWebUploader.h */,
-				7E43B5D62568E57900C9CD58 /* GCDWebUploader.m */,
-			);
-			path = GCDWebUploader;
-			sourceTree = "<group>";
-		};
 		BC20DF2A25037454007BC608 /* PiP */ = {
 			isa = PBXGroup;
 			children = (
@@ -908,6 +894,7 @@
 			files = (
 				7E662ED825614292003B8978 /* myhead.h in Headers */,
 				7E4BA60A2560FD6C0033F18F /* HaishinKit.h in Headers */,
+				2BAE0022264D8E95003BA614 /* WebServer-Bridging-Header.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1056,7 +1043,6 @@
 			files = (
 				296897651CDB028C0074D5F0 /* Assets.xcassets in Resources */,
 				7E33D5D7255575F1003066EC /* Screencast.appex in Resources */,
-				7E43B5E42568E57900C9CD58 /* GCDWebUploader.bundle in Resources */,
 				296897661CDB028C0074D5F0 /* LaunchScreen.storyboard in Resources */,
 				295074301E4620FF007F15A4 /* Main.storyboard in Resources */,
 			);
@@ -1222,8 +1208,6 @@
 				7E43B5FB2568E95D00C9CD58 /* GCDWebServerMultiPartFormRequest.h in Sources */,
 				7E43B5FC2568E95D00C9CD58 /* GCDWebServerFileRequest.h in Sources */,
 				7E43B5FD2568E95D00C9CD58 /* GCDWebServerURLEncodedFormRequest.h in Sources */,
-				7E43B5FE2568E95D00C9CD58 /* GCDWebUploader.bundle in Sources */,
-				7E43B5FF2568E95D00C9CD58 /* GCDWebUploader.h in Sources */,
 				7E43B5DF2568E57900C9CD58 /* GCDWebServerStreamedResponse.m in Sources */,
 				7E43B5E12568E57900C9CD58 /* GCDWebServerMultiPartFormRequest.m in Sources */,
 				7E43B5E22568E57900C9CD58 /* GCDWebServerDataRequest.m in Sources */,
@@ -1232,10 +1216,10 @@
 				7E43B5DB2568E57900C9CD58 /* GCDWebServerConnection.m in Sources */,
 				7E43B5DD2568E57900C9CD58 /* GCDWebServerFileResponse.m in Sources */,
 				7E43B5E02568E57900C9CD58 /* GCDWebServerURLEncodedFormRequest.m in Sources */,
+				2BAE0026264D8E9F003BA614 /* PoseServer.swift in Sources */,
 				BCFB355A24FA40DD00DC5108 /* PlaybackContainerViewController.swift in Sources */,
 				296897671CDB02940074D5F0 /* AppDelegate.swift in Sources */,
 				7E43B5D72568E57900C9CD58 /* GCDWebServerResponse.m in Sources */,
-				7E43B5E52568E57900C9CD58 /* GCDWebUploader.m in Sources */,
 				296897681CDB02940074D5F0 /* LiveViewController.swift in Sources */,
 				7E43B5D92568E57900C9CD58 /* GCDWebServerFunctions.m in Sources */,
 				7E43B5DA2568E57900C9CD58 /* GCDWebServer.m in Sources */,

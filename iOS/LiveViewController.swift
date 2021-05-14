@@ -23,23 +23,6 @@ final class LiveViewController: UIViewController, ARSessionDelegate {
     public var capHeight: Double?
     
     
-    private var webServer:GCDWebServer?
-
-    func initWebServer() {
-
-        let webServer = GCDWebServer()
-
-        webServer.addDefaultHandler(forMethod: "GET", request: GCDWebServerRequest.self, processBlock: {
-            request in return GCDWebServerDataResponse(text:PoseRecorder.PoseRecordes.PublicRecord())
-                
-            })
-            
-        webServer.start(withPort: 8080, bonjourName: "GCD Web Server")
-        
-        print("Visit \(String(describing: webServer.serverURL)) in your web browser")
-    }
-    
-    
     override func viewDidLoad() {
         super.viewDidLoad()
 
@@ -206,8 +189,9 @@ final class LiveViewController: UIViewController, ARSessionDelegate {
     private func didEnterBackground(_ notification: Notification) {
         print("[INFO] Enter background")
         
-        if webServer != nil {
-            webServer!.stop()
+        if PoseServer.PoseGCDWebServer.webServer != nil {
+            print(PoseServer.PoseGCDWebServer.webServer?.isRunning ?? "nil web")
+            PoseServer.PoseGCDWebServer.webServer!.stop()
         }
         // rtmpStream.receiveVideo = false
     }
@@ -215,11 +199,12 @@ final class LiveViewController: UIViewController, ARSessionDelegate {
     @objc
     private func didBecomeActive(_ notification: Notification) {
         print("[INFO] Enter foreground")
-        if webServer == nil {
-            initWebServer()
+        if true || PoseServer.PoseGCDWebServer.webServer == nil {
+            PoseServer.PoseGCDWebServer.initWebServer()
         }
         else {
-            webServer!.start(withPort: 8080, bonjourName: "GCD Web Server")
+            print(PoseServer.PoseGCDWebServer.webServer?.isRunning ?? "nil web")
+            PoseServer.PoseGCDWebServer.webServer!.start(withPort: 8080, bonjourName: "GCD Web Server")
         }
         // rtmpStream.receiveVideo = true
     }

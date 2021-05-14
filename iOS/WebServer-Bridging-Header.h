@@ -8,4 +8,3 @@
 
 #import "../GCDTools/GCDWebServer/Core/GCDWebServer.h"
 #import "../GCDTools/GCDWebServer/Responses/GCDWebServerDataResponse.h"
-#import "../GCDTools/GCDWebUploader/GCDWebUploader.h"

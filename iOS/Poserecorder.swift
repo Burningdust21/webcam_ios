@@ -13,19 +13,24 @@ public class PoseRecorder {
     var ArPoses = NSMutableString("")
     var counter = 0
     
-    let lock = NSLock()
+    private var queue = DispatchQueue(label: "messages.queue", attributes: .concurrent)
     
     func AddRecord(record: String) {
-        if counter == 10000 {
-            Clear()
+        queue.async(flags: .barrier) {
+            if self.counter == 10000 {
+                self.Clear()
+            }
+            self.ArPoses.append(record)
+            self.counter += 1
         }
-        ArPoses.append(record)
     }
     
     public func PublicRecord()->String {
-        let _ArPoses = ArPoses
-        Clear()
-        return _ArPoses as String
+         queue.sync {
+            let _ArPoses = ArPoses
+            Clear()
+            return _ArPoses as String
+        }
     }
     
     public func Clear()

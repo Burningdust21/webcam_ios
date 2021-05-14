@@ -8,13 +8,13 @@ final class VideoIOComponent: IOComponent, ARSessionDelegate {
     var TotalTime: Atomic<Double> = .init(0.0)
     let delta: Double = 1.0
     
-    let debugMode: Bool = true
+    let debugMode: Bool = false
     
     var assetWriterInput: AVAssetWriterInput?
     var assetWriter: AVAssetWriter?
     var assetWriterInputPixelBufferAdaptorWithAssetWriterInput: AVAssetWriterInputPixelBufferAdaptor?
     var nowDate: String?
-    let FPS:Int32 = 60
+    let FPS:Int32 = 30
     var dateFormat: DateFormatter = DateFormatter()
     var localSavePose: String = ""
     // times of commection attemps
