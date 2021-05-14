@@ -10,5 +10,6 @@ struct Preference {
     
     var bitRate: String? = "8000"
 
-    let configFileDir: String = "/Documents/config.txt" //this is the file. we will write to and read from it
+    let configFileDir: String = "/Documents/config.txt"
+    //this is the config file. we will write to and read from it
 }

@@ -13,19 +13,42 @@ public class PoseRecorder {
     var ArPoses = NSMutableString("")
     var counter = 0
     
-    let lock = NSLock()
+    let startSignal = "Start"
+    let stopSignal = "Stopped"
+    
+    private var queue = DispatchQueue(label: "messages.queue")
     
     func AddRecord(record: String) {
-        if counter == 10000 {
-            Clear()
+        queue.sync(flags: .barrier) {
+            if self.counter == 10000 {
+                self.Clear()
+            }
+            self.ArPoses.append(record)
+            self.counter += 1
         }
-        ArPoses.append(record)
     }
     
-    public func PublicRecord()->String {
-        let _ArPoses = ArPoses
-        Clear()
-        return _ArPoses as String
+    public func Start() {
+        self.Clear()
+        self.AddRecord(record: String(format: "%@\n", ["Start"]))
+    }
+    
+    public func Stop() {
+        self.Clear()
+        self.AddRecord(record: String(format: "%@\n", ["Stopped"]))
+    }
+    
+    public func PublicRecord() -> String {
+        var _ArPoses: String = ""
+        
+        queue.sync() {
+            _ArPoses = ArPoses as String
+       }
+        
+        queue.async(flags: .barrier) {
+            self.Clear()
+       }
+        return _ArPoses
     }
     
     public func Clear()

@@ -293,6 +293,7 @@ open class RTMPStream: NetStream {
                 sampler?.delegate = muxer
                 mixer.startRunning()
                 videoWasSent = false
+                videoTimestamp = 0
                 audioWasSent = false
             case .publishing:
                 send(handlerName: "@setDataFrame", arguments: "onMetaData", createMetaData())
