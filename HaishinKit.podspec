@@ -30,17 +30,4 @@ Pod::Spec.new do |s|
 
   # fix GL deprecation warning
   s.pod_target_xcconfig = { "SWIFT_ACTIVE_COMPILATION_CONDITIONS" => "GLES_SILENCE_DEPRECATION" }
-  
-  s.subspec 'Core' do |cs|
-    cs.source_files = 'GCDWebServer/**/*.{h,m}'
-    cs.private_header_files = "GCDWebServer/Core/GCDWebServerPrivate.h"
-    cs.requires_arc = true
-    cs.ios.library = 'z'
-    cs.ios.frameworks = 'CoreServices', 'CFNetwork'
-    cs.tvos.library = 'z'
-    cs.tvos.frameworks = 'CoreServices', 'CFNetwork'
-    cs.osx.library = 'z'
-    cs.osx.framework = 'SystemConfiguration'
-  end
-  
 end

@@ -45,8 +45,8 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "29C9327D1CD76FB800283FC5"
-            BuildableName = "Example iOS.app"
-            BlueprintName = "Example iOS"
+            BuildableName = "NeuralRecon.app"
+            BlueprintName = "NeuralRecon"
             ReferencedContainer = "container:NeuralRecon.xcodeproj">
          </BuildableReference>
       </BuildableProductRunnable>
