@@ -62,27 +62,24 @@ final class VideoIOComponent: IOComponent, ARSessionDelegate {
     
     func sendPose(frame: ARFrame) {
         // print("[INFO] Pose has sent ", TotalTime)
-        Arkit_queue.async { [self] in
+        let trans = frame.camera.transform
+        let quat = (simd_quaternion(trans))
+        let intrinsics = frame.camera.intrinsics
+        let poseOutput = String(format: "%d,%f,%f,%f,%f,%f,%f,%f,%f,%f,%f,%f,%d,%d\r\n",
+                                UInt32(TotalTime.value),
+                                   
+                                intrinsics[0][0], intrinsics[1][1],
+                                intrinsics[2][0], intrinsics[2][1],
 
-            let trans = frame.camera.transform
-            let quat = (simd_quaternion(trans))
-            let intrinsics = frame.camera.intrinsics
-
-            let poseOutput = String(format: "%d,%f,%f,%f,%f,%f,%f,%f,%f,%f,%f,%f\r\n",
-                                    UInt32(TotalTime.value),
-
-                                   intrinsics[0][0], intrinsics[1][1],
-                                   intrinsics[2][0], intrinsics[2][1],
-
-                                   trans[3][0], trans[3][1], trans[3][2],
-                                   quat.vector[3], quat.vector[0], quat.vector[1], quat.vector[2])
-            PoseRecorder.PoseRecordes.AddRecord(record: poseOutput)
-            // in debug mode, save output to device
-            if debugMode {
-                saveToFile(pixelBuffer: frame.capturedImage, pose: poseOutput, frameNum: Int64(TotalTime.value))
-            }
-            TotalTime.mutate { $0 += delta }
+                                trans[3][0], trans[3][1], trans[3][2],
+                                quat.vector[3], quat.vector[0], quat.vector[1], quat.vector[2],
+                                frame.capturedImage.width, frame.capturedImage.height)
+        PoseRecorder.PoseRecordes.AddRecord(record: poseOutput)
+        // in debug mode, save output to device
+        if debugMode {
+            saveToFile(pixelBuffer: frame.capturedImage, pose: poseOutput, frameNum: Int64(TotalTime.value))
         }
+        TotalTime.mutate { $0 += delta }
     }
     
     func endRecorder() {

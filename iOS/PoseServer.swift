@@ -8,28 +8,34 @@
 
 import Foundation
 import HaishinKit
-
+import Telegraph
 
 public class PoseServer {
-    public static var PoseGCDWebServer = PoseServer()
-    public var webServer:GCDWebServer?
+    public var webServer:Server?
     public func initWebServer() {
-
-        webServer = GCDWebServer()
-
-        webServer!.addDefaultHandler(forMethod: "GET", request: GCDWebServerRequest.self, processBlock: {
-            request in return GCDWebServerDataResponse(text:PoseRecorder.PoseRecordes.PublicRecord())
-                
-            })
-        webServer!.start(withPort: 8080, bonjourName: "GCD Web Server")
-        
-        print("Visit \(String(describing: webServer!.serverURL)) in your web browser")
+        webServer = Server()
+        webServer!.route(.GET, "pose", self.serverHandlePoseRequest)
+        webServer!.serveBundle(.main, "/")
+        try! webServer?.start(port: 9000)
     }
-    public init() {
-        Timer.scheduledTimer(timeInterval: 15, target: self, selector: #selector(self.healthCheck), userInfo: nil, repeats: true)
-    }
-    @objc func healthCheck() {
+
+    public func stop() {
         webServer?.stop()
-        initWebServer()
     }
+
+    private func poseHandler() -> String {
+        return PoseRecorder.PoseRecordes.PublicRecord()
+    }
+    
+    private func serverHandlePoseRequest(request: Telegraph.HTTPRequest) -> Telegraph.HTTPResponse {
+      return HTTPResponse(content: poseHandler())
+    }
+    
+}
+
+extension PoseServer: ServerDelegate {
+  // Raised when the server gets disconnected.
+  public func serverDidStop(_ server: Server, error: Error?) {
+    print("[SERVER]", "Server stopped:", error?.localizedDescription ?? "no details")
+  }
 }

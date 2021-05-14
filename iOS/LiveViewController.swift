@@ -22,6 +22,8 @@ final class LiveViewController: UIViewController, ARSessionDelegate {
     public var capWidth: Double?
     public var capHeight: Double?
     
+    public var webServer: PoseServer?
+    
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -36,7 +38,9 @@ final class LiveViewController: UIViewController, ARSessionDelegate {
             .continuousExposure: true,
             .preferredVideoStabilizationMode: AVCaptureVideoStabilizationMode.auto
         ]
-
+        webServer = PoseServer()
+        webServer?.initWebServer()
+        
         NotificationCenter.default.addObserver(self, selector: #selector(on(_:)), name: UIDevice.orientationDidChangeNotification, object: nil)
         NotificationCenter.default.addObserver(self, selector: #selector(didEnterBackground(_:)), name: UIApplication.didEnterBackgroundNotification, object: nil)
         NotificationCenter.default.addObserver(self, selector: #selector(didBecomeActive(_:)), name: UIApplication.didBecomeActiveNotification, object: nil)
@@ -121,13 +125,13 @@ final class LiveViewController: UIViewController, ARSessionDelegate {
     @IBAction func on(publish: UIButton) {
         print("[Button select] viewWillAppear")
         if publish.isSelected {
-            PoseRecorder.PoseRecordes.Clear()
+            PoseRecorder.PoseRecordes.Stop()
             rtmpConnection.close()
             rtmpConnection.removeEventListener(.rtmpStatus, selector: #selector(rtmpStatusHandler), observer: self)
             rtmpConnection.removeEventListener(.ioError, selector: #selector(rtmpErrorHandler), observer: self)
             publish.setTitle("●", for: [])
         } else {
-            PoseRecorder.PoseRecordes.Clear()
+            PoseRecorder.PoseRecordes.Start()
             ARSessionCotroller.ARController.resetARSession()
             UIApplication.shared.isIdleTimerDisabled = true
             rtmpConnection.addEventListener(.rtmpStatus, selector: #selector(rtmpStatusHandler), observer: self)
@@ -188,25 +192,17 @@ final class LiveViewController: UIViewController, ARSessionDelegate {
     @objc
     private func didEnterBackground(_ notification: Notification) {
         print("[INFO] Enter background")
-        
-        if PoseServer.PoseGCDWebServer.webServer != nil {
-            print(PoseServer.PoseGCDWebServer.webServer?.isRunning ?? "nil web")
-            PoseServer.PoseGCDWebServer.webServer!.stop()
-        }
-        // rtmpStream.receiveVideo = false
+//
+//        if PoseServer.PoseWebServer.webServer != nil {
+//            print(PoseServer.PoseWebServer.webServer?.isRunning ?? "nil web")
+//            // PoseServer.PoseWebServer.stop()
+//        }
+//        // rtmpStream.receiveVideo = false
     }
 
     @objc
     private func didBecomeActive(_ notification: Notification) {
         print("[INFO] Enter foreground")
-        if true || PoseServer.PoseGCDWebServer.webServer == nil {
-            PoseServer.PoseGCDWebServer.initWebServer()
-        }
-        else {
-            print(PoseServer.PoseGCDWebServer.webServer?.isRunning ?? "nil web")
-            PoseServer.PoseGCDWebServer.webServer!.start(withPort: 8080, bonjourName: "GCD Web Server")
-        }
-        // rtmpStream.receiveVideo = true
     }
 
     override func observeValue(forKeyPath keyPath: String?, of object: Any?, change: [NSKeyValueChangeKey: Any]?, context: UnsafeMutableRawPointer?) {
