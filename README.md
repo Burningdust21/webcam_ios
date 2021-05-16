@@ -6,23 +6,43 @@ This is ios repositorie for NeuralRecon, futher user guidance please refer to ht
 
 1. Clone the project, open with Xcode 12.
 
-2. Wait a while for xcode to load swift packages, it should be lokking like this:
+2. Wait a while for Xcode to load swift packages, it should be looking like this:
 
    <img src="images/SPM.png" alt="SPM" style="zoom:50%;" />
 
-3. insert your developer certifaction into the following targets:
+   If it fails, you can retry by reset package cahches:
+
+   <img src="images/pkg_reset.png" alt="pkg_reset" style="zoom:25%;" />
+
+3. Insert your developer certification into the following targets:
 
    - NeuralRecon
 
-     ![sign_neural](/Users/bytedance/Documents/glossory/webcam_ios/webcam_ios/images/sign_neural.png)
+     ![sign_neural](images/sign_neural.png)
 
    - ScreenCast
 
-     ![sign_screenCast](/Users/bytedance/Documents/glossory/webcam_ios/webcam_ios/images/sign_screenCast.png)
+     ![sign_screenCast](images/sign_screenCast.png)
+     
+     **Note: remember to select your `Team`, and change `Bundle Identifier`(such as add a suffix)!**
 
-4. Install it to you iPhone/Ipad
+4. Install it to you iPhone/iPad
 
+   Select scheme `NeuralRecon`
    
+   <img src="images/run.png" alt="run" style="zoom: 33%;" />
+   
+   
+   
+   Then select your device(Not simulators)
+   
+   <img src="images/device.png" alt="device" style="zoom:33%;" />
+   
+   Hit the "play" button, you good to go!
+   
+   On first launch, it will ask you for camera and network permission, click `OK`!
+   
+   <img src="images/permission.PNG" alt="permission" style="zoom: 25%;" />
 
 ## UI introduction 
 
