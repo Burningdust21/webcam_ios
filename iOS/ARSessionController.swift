@@ -10,8 +10,8 @@ import Foundation
 import ARKit
 
 public class  ARSessionCotroller: ARSession{
-    public static var ARController = ARSessionCotroller()
-    public var ArIsRunning = false
+    // public static var ARController = ARSessionCotroller()
+    public var isRunning = false
     var arSession = ARSession()
     var _arConfiguration: ARWorldTrackingConfiguration?
     public var arConfiguration: ARWorldTrackingConfiguration{
@@ -54,13 +54,13 @@ public class  ARSessionCotroller: ARSession{
     }
     
     func startRunning() {
-        ArIsRunning = true
+        isRunning = true
         arSession.run(arConfiguration, options: [ARSession.RunOptions.resetTracking])
         print("AR start running", arConfiguration)
     }
     
     func stopRunning() {
-        ArIsRunning = false
+        isRunning = false
         DispatchQueue.global(qos: .userInteractive).async {
             self.arSession.pause()
             print("AR stopped!")

@@ -81,11 +81,6 @@ open class HKView: UIView {
             return
         }
 
-        stream.mixer.session.beginConfiguration()
-        layer.session = stream.mixer.session
-        orientation = stream.mixer.videoIO.orientation
-        stream.mixer.session.commitConfiguration()
-
         stream.lockQueue.async {
             stream.mixer.videoIO.renderer = self
             self.currentStream = stream

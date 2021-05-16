@@ -20,7 +20,7 @@ public class PoseRecorder {
     
     func AddRecord(record: String) {
         queue.sync(flags: .barrier) {
-            if self.counter == 10000 {
+            if self.counter == 1000 {
                 self.Clear()
             }
             self.ArPoses.append(record)

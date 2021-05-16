@@ -13,14 +13,24 @@ import Telegraph
 public class PoseServer {
     public var webServer:Server?
     public func initWebServer() {
-        webServer = Server()
-        webServer!.route(.GET, "pose", self.serverHandlePoseRequest)
-        webServer!.serveBundle(.main, "/")
-        try! webServer?.start(port: 9000)
+        self.webServer = Server(qualityOfService: .userInitiated)
+        self.webServer!.route(.GET, "pose", self.serverHandlePoseRequest)
+        self.webServer!.serveBundle(.main, "/")
+    }
+    
+    public func start() {
+        if webServer!.isRunning {return}
+        do {
+            try webServer?.start(port: 9000)
+        } catch {
+            print("[SERVER] FAILed: ", Error.self)
+        }
     }
 
     public func stop() {
-        webServer?.stop()
+        if webServer!.isRunning {
+            webServer?.stop()
+        }
     }
 
     private func poseHandler() -> String {
