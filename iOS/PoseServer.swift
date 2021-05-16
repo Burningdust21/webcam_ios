@@ -13,14 +13,26 @@ import Telegraph
 public class PoseServer {
     public var webServer:Server?
     public func initWebServer() {
-        webServer = Server()
-        webServer!.route(.GET, "pose", self.serverHandlePoseRequest)
-        webServer!.serveBundle(.main, "/")
-        try! webServer?.start(port: 9000)
+        // set OperationQueue in Server to .userInitiated,
+        // prevent Server from not responding
+        self.webServer = Server(qualityOfService: .userInitiated)
+        self.webServer!.route(.GET, "pose", self.serverHandlePoseRequest)
+        self.webServer!.serveBundle(.main, "/")
+    }
+    
+    public func start() {
+        if webServer!.isRunning {return}
+        do {
+            try webServer?.start(port: 9000)
+        } catch {
+            print("[SERVER] FAILed: ", Error.self)
+        }
     }
 
     public func stop() {
-        webServer?.stop()
+        if webServer!.isRunning {
+            webServer?.stop()
+        }
     }
 
     private func poseHandler() -> String {
@@ -31,11 +43,4 @@ public class PoseServer {
       return HTTPResponse(content: poseHandler())
     }
     
-}
-
-extension PoseServer: ServerDelegate {
-  // Raised when the server gets disconnected.
-  public func serverDidStop(_ server: Server, error: Error?) {
-    print("[SERVER]", "Server stopped:", error?.localizedDescription ?? "no details")
-  }
 }

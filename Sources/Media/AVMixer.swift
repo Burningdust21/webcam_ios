@@ -94,18 +94,15 @@ public class AVMixer {
             guard sessionPreset != oldValue else {
                 return
             }
-            session.beginConfiguration()
-            session.sessionPreset = sessionPreset
-            session.commitConfiguration()
+
         }
     }
 
-    private var _session: AVCaptureSession?
-    public var session: AVCaptureSession {
+    private var _session: ARSessionCotroller?
+    public var session: ARSessionCotroller {
         get {
             if _session == nil {
-                _session = AVCaptureSession()
-                _session?.sessionPreset = .default
+                _session = ARSessionCotroller()
             }
             return _session!
         }

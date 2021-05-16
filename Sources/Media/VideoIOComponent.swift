@@ -239,10 +239,10 @@ final class VideoIOComponent: IOComponent, ARSessionDelegate {
                     return
             }
 
-            fps = ARSessionCotroller.ARController.fps
-            encoder.expectedFPS = ARSessionCotroller.ARController.fps
+            fps = mixer?.session.fps ?? 0
+            encoder.expectedFPS = (mixer?.session.fps ?? 60) / 2
             logger.info("\(data)")
-
+ 
             do {
                 try device.lockForConfiguration()
                 device.activeVideoMinFrameDuration = data.duration
@@ -409,7 +409,6 @@ final class VideoIOComponent: IOComponent, ARSessionDelegate {
             }
             if let output: AVCaptureVideoDataOutput = _output {
                 output.setSampleBufferDelegate(nil, queue: nil)
-                mixer?.session.removeOutput(output)
             }
             _output = newValue
         }
@@ -417,14 +416,12 @@ final class VideoIOComponent: IOComponent, ARSessionDelegate {
 
     var input: AVCaptureInput? = nil {
         didSet {
-            guard let mixer: AVMixer = mixer, oldValue != input else {
+            guard let _: AVMixer = mixer, oldValue != input else {
                 return
             }
-            if let oldValue: AVCaptureInput = oldValue {
-                mixer.session.removeInput(oldValue)
+            if let _: AVCaptureInput = oldValue {
             }
-            if let input: AVCaptureInput = input, mixer.session.canAddInput(input) {
-                mixer.session.addInput(input)
+            if let _: AVCaptureInput = input, true {
             }
         }
     }
@@ -445,22 +442,16 @@ final class VideoIOComponent: IOComponent, ARSessionDelegate {
 
     override init(mixer: AVMixer) {
         super.init(mixer: mixer)
+        mixer.session.arSession.delegate = self
+        mixer.session.arSession.delegateQueue = self.lockQueue
         encoder.lockQueue = lockQueue
         decoder.delegate = self
     }
 
     #if os(iOS) || os(macOS)
     func attachCamera(_ camera: AVCaptureDevice?) throws {
-        guard let mixer: AVMixer = mixer else {
+        guard let _: AVMixer = mixer else {
             return
-        }
-
-        mixer.session.beginConfiguration()
-        defer {
-            mixer.session.commitConfiguration()
-            if torch {
-                setTorchMode(.on)
-            }
         }
 
         output = nil
@@ -473,7 +464,6 @@ final class VideoIOComponent: IOComponent, ARSessionDelegate {
         #endif
 
         input = try AVCaptureDeviceInput(device: camera)
-        mixer.session.addOutput(output)
 
         for connection in output.connections {
             if connection.isVideoOrientationSupported {
@@ -626,24 +616,7 @@ extension VideoIOComponent {
 extension VideoIOComponent: AVCaptureVideoDataOutputSampleBufferDelegate {
     // MARK: AVCaptureVideoDataOutputSampleBufferDelegate
     func captureOutput(_ captureOutput: AVCaptureOutput, didOutput sampleBuffer: CMSampleBuffer, from connection: AVCaptureConnection) {
-        // encodeSampleBuffer(sampleBuffer)
-        //return
-        print("[INFO] ARStarting, AVcapture stopped!")
-        
-        DispatchQueue.global(qos: .userInteractive).async {
-            if (self.mixer!.session.isRunning)
-            {
-                self.mixer?.session.stopRunning()
-            }
-
-            if !ARSessionCotroller.ARController.ArIsRunning
-            {
-                ARSessionCotroller.ARController.arSession.delegate = self
-                ARSessionCotroller.ARController.arSession.delegateQueue = self.lockQueue
-                ARSessionCotroller.ARController.startRunning()
-
-            }
-        }
+        // This function should never be executed!!
     }
 }
 

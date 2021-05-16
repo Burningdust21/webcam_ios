@@ -67,10 +67,8 @@ final class AudioIOComponent: IOComponent, DisplayLinkedQueueClockReference {
                 return
             }
             if let oldValue: AVCaptureDeviceInput = oldValue {
-                mixer.session.removeInput(oldValue)
             }
-            if let input: AVCaptureDeviceInput = input, mixer.session.canAddInput(input) {
-                mixer.session.addInput(input)
+            if let input: AVCaptureDeviceInput = input, true {
             }
         }
     }
@@ -89,7 +87,6 @@ final class AudioIOComponent: IOComponent, DisplayLinkedQueueClockReference {
             }
             if let output: AVCaptureAudioDataOutput = _output {
                 output.setSampleBufferDelegate(nil, queue: nil)
-                mixer?.session.removeOutput(output)
             }
             _output = newValue
         }
@@ -112,24 +109,6 @@ final class AudioIOComponent: IOComponent, DisplayLinkedQueueClockReference {
             return
         }
 
-        mixer.session.beginConfiguration()
-        defer {
-            mixer.session.commitConfiguration()
-        }
-
-        output = nil
-        encoder.invalidate()
-
-        guard let audio: AVCaptureDevice = audio else {
-            input = nil
-            return
-        }
-
-        input = try AVCaptureDeviceInput(device: audio)
-        #if os(iOS)
-        mixer.session.automaticallyConfiguresApplicationAudioSession = automaticallyConfiguresApplicationAudioSession
-        #endif
-        mixer.session.addOutput(output)
         output.setSampleBufferDelegate(self, queue: lockQueue)
     }
 

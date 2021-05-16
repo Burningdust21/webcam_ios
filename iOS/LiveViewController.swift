@@ -22,6 +22,8 @@ final class LiveViewController: UIViewController, ARSessionDelegate {
     public var capWidth: Double?
     public var capHeight: Double?
     
+    // webServer is stopped when enter background
+    // and is restarted when come back to liveview
     public var webServer: PoseServer?
     
     
@@ -47,8 +49,9 @@ final class LiveViewController: UIViewController, ARSessionDelegate {
     }
     
     func loadLabels() {
-        capWidth = Double(ARSessionCotroller.ARController.arConfiguration.videoFormat.imageResolution.width)
-        capHeight = Double(ARSessionCotroller.ARController.arConfiguration.videoFormat.imageResolution.height)
+        
+        capWidth = Double(rtmpStream.mixer.session.arConfiguration.videoFormat.imageResolution.width)
+        capHeight = Double(rtmpStream.mixer.session.arConfiguration.videoFormat.imageResolution.height)
         print("[DEBUGER] \(String(capWidth!)) x \(String(capHeight!))")
         currentResoLabel?.text =
             "\(String(capWidth!)) x \(String(capHeight!))"
@@ -64,9 +67,6 @@ final class LiveViewController: UIViewController, ARSessionDelegate {
         
         sentResoLabel?.text =
             "\(String(sentWidth)) x \(String(sentHeight))"
-        
-        ARSessionCotroller.ARController.format = Int(Preference.defaultInstance.captureMode!)!
-        rtmpStream.captureSettings[.fps] = ARSessionCotroller.ARController.fps
     }
 
     override func viewWillAppear(_ animated: Bool) {
@@ -74,16 +74,19 @@ final class LiveViewController: UIViewController, ARSessionDelegate {
         logger.info("viewWillAppear")
         super.viewWillAppear(animated)
         
+        webServer?.start()
+        
         rtmpStream.addObserver(self, forKeyPath: "currentFPS", options: .new, context: nil)
         lfView?.attachStream(rtmpStream)
-         
-        if ARSessionCotroller.ARController.ArIsRunning {
-            loadLabels()
+        if !rtmpStream.mixer.isRunning.value {
+            rtmpStream.mixer.startRunning()
         }
-        else{
-            rtmpStream.attachAudio(AVCaptureDevice.default(for: .audio)) { error in
-                logger.warn(error.description)
-            }
+        rtmpStream.mixer.session.format = Int(Preference.defaultInstance.captureMode!)!
+        rtmpStream.captureSettings[.fps] = rtmpStream.mixer.session.fps
+
+        if rtmpStream.mixer.session.isRunning {
+            loadLabels()
+        } else{
             rtmpStream.attachCamera(DeviceUtil.device(withPosition: currentPosition)) { error in
                 logger.warn(error.description)
             }
@@ -98,6 +101,7 @@ final class LiveViewController: UIViewController, ARSessionDelegate {
         rtmpStream.removeObserver(self, forKeyPath: "currentFPS")
         rtmpStream.close()
         //rtmpStream.dispose()
+        rtmpStream.mixer.stopRunning()
     }
 
     @IBAction func rotateCamera(_ sender: UIButton) {
@@ -132,7 +136,7 @@ final class LiveViewController: UIViewController, ARSessionDelegate {
             publish.setTitle("●", for: [])
         } else {
             PoseRecorder.PoseRecordes.Start()
-            ARSessionCotroller.ARController.resetARSession()
+            rtmpStream.mixer.session.resetARSession()
             UIApplication.shared.isIdleTimerDisabled = true
             rtmpConnection.addEventListener(.rtmpStatus, selector: #selector(rtmpStatusHandler), observer: self)
             rtmpConnection.addEventListener(.ioError, selector: #selector(rtmpErrorHandler), observer: self)
@@ -191,17 +195,13 @@ final class LiveViewController: UIViewController, ARSessionDelegate {
 
     @objc
     private func didEnterBackground(_ notification: Notification) {
+        webServer?.stop()
         print("[INFO] Enter background")
-//
-//        if PoseServer.PoseWebServer.webServer != nil {
-//            print(PoseServer.PoseWebServer.webServer?.isRunning ?? "nil web")
-//            // PoseServer.PoseWebServer.stop()
-//        }
-//        // rtmpStream.receiveVideo = false
     }
 
     @objc
     private func didBecomeActive(_ notification: Notification) {
+        webServer?.start()
         print("[INFO] Enter foreground")
     }
 

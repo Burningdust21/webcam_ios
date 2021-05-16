@@ -18,7 +18,6 @@
 		292D8A331D8B293300DBECE2 /* MP4Sampler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 292D8A321D8B293300DBECE2 /* MP4Sampler.swift */; };
 		2930D0411E12D35400DA2DC5 /* SampleHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2930D03F1E12D17C00DA2DC5 /* SampleHandler.swift */; };
 		293B42E92340B4840086F973 /* RTMPObjectEncoding.swift in Sources */ = {isa = PBXBuildFile; fileRef = 293B42E82340B4840086F973 /* RTMPObjectEncoding.swift */; };
-		2941746B22D069B300A2944F /* AudioEffect.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2941746A22D069B300A2944F /* AudioEffect.swift */; };
 		2942424D1CF4C01300D65DCB /* MD5.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2942424C1CF4C01300D65DCB /* MD5.swift */; };
 		2942A4F821A9418A004E1BEE /* Running.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2942A4F721A9418A004E1BEE /* Running.swift */; };
 		2942EF841DFF4D06008E620C /* HaishinKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2945CBBD1B4BE66000104112 /* HaishinKit.framework */; };
@@ -66,7 +65,6 @@
 		29B876861CD70AE800FC07DA /* PacketizedElementaryStream.swift in Sources */ = {isa = PBXBuildFile; fileRef = 29B876801CD70AE800FC07DA /* PacketizedElementaryStream.swift */; };
 		29B876871CD70AE800FC07DA /* ProgramSpecific.swift in Sources */ = {isa = PBXBuildFile; fileRef = 29B876811CD70AE800FC07DA /* ProgramSpecific.swift */; };
 		29B876881CD70AE800FC07DA /* TransportStream.swift in Sources */ = {isa = PBXBuildFile; fileRef = 29B876821CD70AE800FC07DA /* TransportStream.swift */; };
-		29B876901CD70AFE00FC07DA /* AudioIOComponent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 29B876891CD70AFE00FC07DA /* AudioIOComponent.swift */; };
 		29B876921CD70AFE00FC07DA /* AVMixer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 29B8768B1CD70AFE00FC07DA /* AVMixer.swift */; };
 		29B876941CD70AFE00FC07DA /* SoundTransform.swift in Sources */ = {isa = PBXBuildFile; fileRef = 29B8768D1CD70AFE00FC07DA /* SoundTransform.swift */; };
 		29B876961CD70AFE00FC07DA /* VideoEffect.swift in Sources */ = {isa = PBXBuildFile; fileRef = 29B8768F1CD70AFE00FC07DA /* VideoEffect.swift */; };
@@ -109,7 +107,6 @@
 		29FD1B5022FF13190095A0BE /* VTSessionPropertyKey.swift in Sources */ = {isa = PBXBuildFile; fileRef = 29FD1B4F22FF13190095A0BE /* VTSessionPropertyKey.swift */; };
 		2B206B5425C5A40A0018B0C3 /* Poserecorder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B206B5325C5A40A0018B0C3 /* Poserecorder.swift */; };
 		2BAE0026264D8E9F003BA614 /* PoseServer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2BAE001B264D8B5E003BA614 /* PoseServer.swift */; };
-		2BAE002B264E2219003BA614 /* Telegraph in Frameworks */ = {isa = PBXBuildFile; productRef = 2BAE002A264E2219003BA614 /* Telegraph */; };
 		2BAE003B264E2877003BA614 /* HTTPStream.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2BAE0036264E2877003BA614 /* HTTPStream.swift */; };
 		2BAE003C264E2877003BA614 /* HTTPRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2BAE0037264E2877003BA614 /* HTTPRequest.swift */; };
 		2BAE003D264E2877003BA614 /* HTTPResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2BAE0038264E2877003BA614 /* HTTPResponse.swift */; };
@@ -124,6 +121,9 @@
 		7E3DA9A4256296C100343FF2 /* Logboard in Embed Frameworks */ = {isa = PBXBuildFile; productRef = 7E3DA9A1256296C100343FF2 /* Logboard */; settings = {ATTRIBUTES = (CodeSignOnCopy, ); }; };
 		7E4BA60A2560FD6C0033F18F /* HaishinKit.h in Headers */ = {isa = PBXBuildFile; fileRef = 299F7E3B1CD71A97001E7272 /* HaishinKit.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		7E662ED825614292003B8978 /* myhead.h in Headers */ = {isa = PBXBuildFile; fileRef = 7E662ED72561427B003B8978 /* myhead.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		7E759C942650B89300ED3140 /* AudioEffect.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E759C922650B89300ED3140 /* AudioEffect.swift */; };
+		7E759C952650B89300ED3140 /* AudioIOComponent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E759C932650B89300ED3140 /* AudioIOComponent.swift */; };
+		7EEEB529265103CB004EEAB9 /* Telegraph in Frameworks */ = {isa = PBXBuildFile; productRef = 7EEEB528265103CB004EEAB9 /* Telegraph */; };
 		BC20DF2C2503747E007BC608 /* HKPictureInPicureControllerPosition.swift in Sources */ = {isa = PBXBuildFile; fileRef = BC20DF2B2503747E007BC608 /* HKPictureInPicureControllerPosition.swift */; };
 		BC20DF34250374EA007BC608 /* HKPictureInPicureController+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = BC20DF33250374EA007BC608 /* HKPictureInPicureController+Extension.swift */; };
 		BC20DF38250377A3007BC608 /* ScreenCaptureSession.swift in Sources */ = {isa = PBXBuildFile; fileRef = 299B131C1D35272D00A1E8F5 /* ScreenCaptureSession.swift */; };
@@ -227,7 +227,6 @@
 		2930D03F1E12D17C00DA2DC5 /* SampleHandler.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SampleHandler.swift; sourceTree = "<group>"; };
 		293B42E82340B4840086F973 /* RTMPObjectEncoding.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RTMPObjectEncoding.swift; sourceTree = "<group>"; };
 		2940EF4E2380116500430456 /* CircularBufferTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CircularBufferTests.swift; sourceTree = "<group>"; };
-		2941746A22D069B300A2944F /* AudioEffect.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AudioEffect.swift; sourceTree = "<group>"; };
 		2942424C1CF4C01300D65DCB /* MD5.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MD5.swift; sourceTree = "<group>"; };
 		2942A4F721A9418A004E1BEE /* Running.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Running.swift; sourceTree = "<group>"; };
 		2943ED52232FCA7C00ED6301 /* Setting.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Setting.swift; sourceTree = "<group>"; };
@@ -288,7 +287,6 @@
 		29B876801CD70AE800FC07DA /* PacketizedElementaryStream.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PacketizedElementaryStream.swift; sourceTree = "<group>"; };
 		29B876811CD70AE800FC07DA /* ProgramSpecific.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProgramSpecific.swift; sourceTree = "<group>"; };
 		29B876821CD70AE800FC07DA /* TransportStream.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TransportStream.swift; sourceTree = "<group>"; };
-		29B876891CD70AFE00FC07DA /* AudioIOComponent.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AudioIOComponent.swift; sourceTree = "<group>"; };
 		29B8768B1CD70AFE00FC07DA /* AVMixer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AVMixer.swift; sourceTree = "<group>"; };
 		29B8768D1CD70AFE00FC07DA /* SoundTransform.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SoundTransform.swift; sourceTree = "<group>"; };
 		29B8768E1CD70AFE00FC07DA /* VideoIOComponent.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = VideoIOComponent.swift; sourceTree = "<group>"; };
@@ -344,6 +342,8 @@
 		2BAE003A264E2877003BA614 /* HTTPService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HTTPService.swift; sourceTree = "<group>"; };
 		2BEAAD3725C5B4C400EE2133 /* ARSessionController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ARSessionController.swift; sourceTree = "<group>"; };
 		7E662ED72561427B003B8978 /* myhead.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = myhead.h; sourceTree = "<group>"; };
+		7E759C922650B89300ED3140 /* AudioEffect.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = AudioEffect.swift; path = Sources/Media/AudioEffect.swift; sourceTree = SOURCE_ROOT; };
+		7E759C932650B89300ED3140 /* AudioIOComponent.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = AudioIOComponent.swift; path = Sources/Media/AudioIOComponent.swift; sourceTree = SOURCE_ROOT; };
 		BC20DF2B2503747E007BC608 /* HKPictureInPicureControllerPosition.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HKPictureInPicureControllerPosition.swift; sourceTree = "<group>"; };
 		BC20DF33250374EA007BC608 /* HKPictureInPicureController+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "HKPictureInPicureController+Extension.swift"; sourceTree = "<group>"; };
 		BC44A1A823D31E92002D4297 /* AudioConverter.AudioBuffer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AudioConverter.AudioBuffer.swift; sourceTree = "<group>"; wrapsLines = 1; };
@@ -373,7 +373,6 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				2BAE002B264E2219003BA614 /* Telegraph in Frameworks */,
 				7E3DA99A2562967200343FF2 /* Logboard in Frameworks */,
 				2942EF841DFF4D06008E620C /* HaishinKit.framework in Frameworks */,
 			);
@@ -384,6 +383,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				7E3DA9972562966400343FF2 /* Logboard in Frameworks */,
+				7EEEB529265103CB004EEAB9 /* Telegraph in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -678,8 +678,8 @@
 		29BDE0BD1C65BC2400D6A768 /* Media */ = {
 			isa = PBXGroup;
 			children = (
-				2941746A22D069B300A2944F /* AudioEffect.swift */,
-				29B876891CD70AFE00FC07DA /* AudioIOComponent.swift */,
+				7E759C922650B89300ED3140 /* AudioEffect.swift */,
+				7E759C932650B89300ED3140 /* AudioIOComponent.swift */,
 				29B8768B1CD70AFE00FC07DA /* AVMixer.swift */,
 				2976A47D1D48C5C700B53EF2 /* AVRecorder.swift */,
 				29C263171D00804A0098D4EF /* GLHKView.swift */,
@@ -812,6 +812,7 @@
 			name = "HaishinKit iOS";
 			packageProductDependencies = (
 				7E3DA9962562966400343FF2 /* Logboard */,
+				7EEEB528265103CB004EEAB9 /* Telegraph */,
 			);
 			productName = lf;
 			productReference = 2945CBBD1B4BE66000104112 /* HaishinKit.framework */;
@@ -837,7 +838,6 @@
 			name = NeuralRecon;
 			packageProductDependencies = (
 				7E3DA9992562967200343FF2 /* Logboard */,
-				2BAE002A264E2219003BA614 /* Telegraph */,
 			);
 			productName = "Example iOS";
 			productReference = 29C9327E1CD76FB800283FC5 /* NeuralRecon.app */;
@@ -851,7 +851,7 @@
 			attributes = {
 				LastSwiftMigration = 0700;
 				LastSwiftUpdateCheck = 0830;
-				LastUpgradeCheck = 1210;
+				LastUpgradeCheck = 1240;
 				ORGANIZATIONNAME = "Shogo Endo";
 				TargetAttributes = {
 					2915EC511D85BDF100621092 = {
@@ -885,7 +885,7 @@
 			mainGroup = 2945CBB31B4BE66000104112;
 			packageReferences = (
 				7E43996F25626CCE0027ABC1 /* XCRemoteSwiftPackageReference "Logboard" */,
-				2BAE0029264E2219003BA614 /* XCRemoteSwiftPackageReference "Telegraph" */,
+				7EEEB527265103CB004EEAB9 /* XCRemoteSwiftPackageReference "Telegraph" */,
 			);
 			productRefGroup = 2945CBBE1B4BE66000104112 /* Products */;
 			projectDirPath = "";
@@ -958,7 +958,6 @@
 			files = (
 				295891161EEB8DFC00CE51E1 /* FLVTagType.swift in Sources */,
 				29B876B11CD70B2800FC07DA /* RTMPMessage.swift in Sources */,
-				2941746B22D069B300A2944F /* AudioEffect.swift in Sources */,
 				295891011EEB7A8B00CE51E1 /* ScalingMode.swift in Sources */,
 				2BAE003C264E2877003BA614 /* HTTPRequest.swift in Sources */,
 				BC83A4732403D83B006BDE06 /* VTCompressionSession+Extension.swift in Sources */,
@@ -1017,6 +1016,7 @@
 				2958912A1EEB8F1D00CE51E1 /* FLVSoundSize.swift in Sources */,
 				29EA87DC1E79A0460043A5F8 /* Data+Extension.swift in Sources */,
 				29DF20622312A3DD004057C3 /* RTMPNWSocket.swift in Sources */,
+				7E759C952650B89300ED3140 /* AudioIOComponent.swift in Sources */,
 				29B876BD1CD70B3900FC07DA /* CRC32.swift in Sources */,
 				29EA87E61E79A2780043A5F8 /* CMAudioFormatDescription+Extension.swift in Sources */,
 				29B876B51CD70B2800FC07DA /* RTMPSocket.swift in Sources */,
@@ -1056,11 +1056,11 @@
 				2916196C1E7F0768009FB344 /* CMFormatDescription+Extension.swift in Sources */,
 				29B876921CD70AFE00FC07DA /* AVMixer.swift in Sources */,
 				29DC17B321D0CC0600E26CED /* Atomic.swift in Sources */,
+				7E759C942650B89300ED3140 /* AudioEffect.swift in Sources */,
 				2942424D1CF4C01300D65DCB /* MD5.swift in Sources */,
 				29EA87D31E799F360043A5F8 /* ExpressibleByIntegerLiteral+Extension.swift in Sources */,
 				29245AEF1D32348400AFFB9A /* VideoGravityUtil.swift in Sources */,
 				29FD1B5022FF13190095A0BE /* VTSessionPropertyKey.swift in Sources */,
-				29B876901CD70AFE00FC07DA /* AudioIOComponent.swift in Sources */,
 				29B8765C1CD70A7900FC07DA /* H264Decoder.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -1116,7 +1116,7 @@
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				DEBUG_INFORMATION_FORMAT = dwarf;
-				DEVELOPMENT_TEAM = "";
+				DEVELOPMENT_TEAM = 33XC7CLH6G;
 				FRAMEWORK_SEARCH_PATHS = "$(inherited)";
 				INFOPLIST_FILE = "$(SRCROOT)/iOS/Screencast/Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
@@ -1142,7 +1142,7 @@
 				CLANG_WARN_SUSPICIOUS_MOVES = YES;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
-				DEVELOPMENT_TEAM = "";
+				DEVELOPMENT_TEAM = 33XC7CLH6G;
 				FRAMEWORK_SEARCH_PATHS = "$(inherited)";
 				INFOPLIST_FILE = "$(SRCROOT)/iOS/Screencast/Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
@@ -1208,7 +1208,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 14.4;
 				MACOSX_DEPLOYMENT_TARGET = 10.11;
 				MTL_ENABLE_DEBUG_INFO = YES;
 				ONLY_ACTIVE_ARCH = YES;
@@ -1262,7 +1262,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 14.4;
 				MACOSX_DEPLOYMENT_TARGET = 10.11;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				SDKROOT = iphoneos;
@@ -1280,7 +1280,7 @@
 			buildSettings = {
 				APPLICATION_EXTENSION_API_ONLY = YES;
 				BUILD_LIBRARY_FOR_DISTRIBUTION = YES;
-				CODE_SIGN_IDENTITY = "Apple Development";
+				CODE_SIGN_IDENTITY = "";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
 				"CODE_SIGN_IDENTITY[sdk=macosx*]" = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
@@ -1319,7 +1319,7 @@
 			buildSettings = {
 				APPLICATION_EXTENSION_API_ONLY = YES;
 				BUILD_LIBRARY_FOR_DISTRIBUTION = YES;
-				CODE_SIGN_IDENTITY = "Apple Development";
+				CODE_SIGN_IDENTITY = "";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
 				"CODE_SIGN_IDENTITY[sdk=macosx*]" = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
@@ -1448,14 +1448,6 @@
 /* End XCConfigurationList section */
 
 /* Begin XCRemoteSwiftPackageReference section */
-		2BAE0029264E2219003BA614 /* XCRemoteSwiftPackageReference "Telegraph" */ = {
-			isa = XCRemoteSwiftPackageReference;
-			repositoryURL = "https://github.com/Building42/Telegraph.git";
-			requirement = {
-				kind = exactVersion;
-				version = 0.29.0;
-			};
-		};
 		7E43996F25626CCE0027ABC1 /* XCRemoteSwiftPackageReference "Logboard" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/shogo4405/Logboard";
@@ -1464,14 +1456,17 @@
 				version = 2.2.1;
 			};
 		};
+		7EEEB527265103CB004EEAB9 /* XCRemoteSwiftPackageReference "Telegraph" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/Burningdust21/Telegraph.git";
+			requirement = {
+				kind = exactVersion;
+				version = 0.29.1;
+			};
+		};
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
-		2BAE002A264E2219003BA614 /* Telegraph */ = {
-			isa = XCSwiftPackageProductDependency;
-			package = 2BAE0029264E2219003BA614 /* XCRemoteSwiftPackageReference "Telegraph" */;
-			productName = Telegraph;
-		};
 		7E3DA9962562966400343FF2 /* Logboard */ = {
 			isa = XCSwiftPackageProductDependency;
 			package = 7E43996F25626CCE0027ABC1 /* XCRemoteSwiftPackageReference "Logboard" */;
@@ -1486,6 +1481,11 @@
 			isa = XCSwiftPackageProductDependency;
 			package = 7E43996F25626CCE0027ABC1 /* XCRemoteSwiftPackageReference "Logboard" */;
 			productName = Logboard;
+		};
+		7EEEB528265103CB004EEAB9 /* Telegraph */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 7EEEB527265103CB004EEAB9 /* XCRemoteSwiftPackageReference "Telegraph" */;
+			productName = Telegraph;
 		};
 /* End XCSwiftPackageProductDependency section */
 	};
