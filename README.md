@@ -1,6 +1,6 @@
 ## Guidance
 
-This is ios repositorie for NeuralRecon, futher user guidance please refer to https://github.com/Burningdust21/NeuralRecon/tree/webcam
+This is ios repositorie for NeuralRecon, futher user guidance please refer to https://github.com/Burningdust21/NeuralRecon/blob/webcam/WEBCAM.md
 
 ## Installation
 
