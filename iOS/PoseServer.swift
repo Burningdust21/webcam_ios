@@ -13,6 +13,8 @@ import Telegraph
 public class PoseServer {
     public var webServer:Server?
     public func initWebServer() {
+        // set OperationQueue in Server to .userInitiated,
+        // prevent Server from not responding
         self.webServer = Server(qualityOfService: .userInitiated)
         self.webServer!.route(.GET, "pose", self.serverHandlePoseRequest)
         self.webServer!.serveBundle(.main, "/")
@@ -41,11 +43,4 @@ public class PoseServer {
       return HTTPResponse(content: poseHandler())
     }
     
-}
-
-extension PoseServer: ServerDelegate {
-  // Raised when the server gets disconnected.
-  public func serverDidStop(_ server: Server, error: Error?) {
-    print("[SERVER]", "Server stopped:", error?.localizedDescription ?? "no details")
-  }
 }

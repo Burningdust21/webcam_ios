@@ -240,7 +240,7 @@ final class VideoIOComponent: IOComponent, ARSessionDelegate {
             }
 
             fps = mixer?.session.fps ?? 0
-            encoder.expectedFPS = mixer?.session.fps ?? 30
+            encoder.expectedFPS = (mixer?.session.fps ?? 60) / 2
             logger.info("\(data)")
  
             do {
@@ -416,12 +416,12 @@ final class VideoIOComponent: IOComponent, ARSessionDelegate {
 
     var input: AVCaptureInput? = nil {
         didSet {
-            guard let mixer: AVMixer = mixer, oldValue != input else {
+            guard let _: AVMixer = mixer, oldValue != input else {
                 return
             }
-            if let oldValue: AVCaptureInput = oldValue {
+            if let _: AVCaptureInput = oldValue {
             }
-            if let input: AVCaptureInput = input, true {
+            if let _: AVCaptureInput = input, true {
             }
         }
     }
@@ -450,7 +450,7 @@ final class VideoIOComponent: IOComponent, ARSessionDelegate {
 
     #if os(iOS) || os(macOS)
     func attachCamera(_ camera: AVCaptureDevice?) throws {
-        guard let mixer: AVMixer = mixer else {
+        guard let _: AVMixer = mixer else {
             return
         }
 
